@@ -1,0 +1,52 @@
+CoM=====================================================================
+CoM...Diagstd: Full diagonalization of a matrix, real, symmetrical.
+CoM---------------------------------------------------------------------
+CoM
+CoM   Diagonalization routine: TQLI (EISPACK).
+CoM  -simple, public domain, but slow (ALL eigenvectors are computed).
+CoM   
+CoM---------------------------------------------------------------------
+CoM
+CoM   INPUT matrix filename (expected from, e.g., PDBMAT program):
+CoM   ************************************************************
+CoM   Default (first one found picked):
+CoM   CERFACS -Formatted : matrix.sdijf
+CoM   CERFBIN -Binary    : matrix.sdijb
+CoM   Otherwise, a formatted matrix filename is asked for.
+CoM
+CoM   Input matrix format: i, j, non-zero-ij-element.
+CoM
+CoM   It can start with a title, recognized by: 
+CoM   !,# in first column, or 'program-name>' as first word.
+CoM   ALL the matrix is put into memory (including zeroes).
+CoM   As a consequence, only SMALL systems can be handled.
+CoM
+CoM   OUTPUT:
+CoM   *******
+CoM   An eigenvector file, in CERFACS format.
+CoM   Its filename is obtained by replacing the matrix filename suffix.
+CoM.....................................................................
+CoM
+CoM   This is a fortran 77 program (sorry), so it has predefined:
+CoM   ==============
+CoM   MEMORY LIMITS:
+CoM   ==============
+CoM   Modify them if needed, that is, if the program complains or
+CoM   if you are studying (too) large systems. 
+CoM
+CoM   Then, to (re)compile this program, type:
+CoM   make diagstd
+CoM   or:
+CoM   g77 -o diagstd diagstd.f
+CoM   or use your favorite fortran compiler instead (of g77).
+CoM   
+CoM   To run it in the current directory, type: ./diagstd
+CoM---------------------------------------------------------------------
+CoM   In case of problem(s), feel free to tell:
+CoM   Yves-Henri.Sanejouand@univ-nantes.fr (bug reports may help others).
+CoM---------------------------------------------------------------------
+CoM   By default, eigenvector are ranked by increasing eigenvalues.
+CoM
+CoM   TRED2 and TQLI (based on the original EISPACK library) 
+CoM   perform a diagonalization of a real symmetric matrix based 
+CoM   on the QL algorithm. 

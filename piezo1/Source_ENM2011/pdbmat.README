@@ -1,0 +1,216 @@
+CoM=====================================================================
+CoM...Pdbmat: Calculates the Hessian matrix using an ENM.
+CoM---------------------------------------------------------------------
+CoM
+CoM   Goal: To compute the low-frequency (usually collective) normal 
+CoM   modes of vibration of the system.
+CoM
+CoM   Action: Mass-weighted second derivatives energy matrix is computed,
+CoM   using Tirion's model, that is, an elastic network model (ENM).
+CoM
+CoM   In ENMs, pairs of particles (atoms) are linked by springs.
+CoM
+CoM   In Tirions's model, springs are set between atoms less than 
+CoM   CUToff Angstroms away from each others.
+CoM
+CoM   In HINSEN's version, springs are weighted by exp(-dij/rkh)**2.
+CoM   Herein, both kind of typical distances (CUToff & rkh) can be mixed.
+CoM
+CoM   Next: To obtain the modes, the matrix produced by pdbmat has to be 
+CoM   diagonalized. This can be done using programs like DIAGSTD or, 
+CoM   for larger systems, DIAGRTB, BLZPACK, etc.
+CoM
+CoM---------------------------------------------------------------------
+CoM   INPUT: 
+CoM   ******
+CoM   A parameter file named pdbmat.dat   
+CoM
+CoM   Note that each run of pdbmat produces a pdbmat.dat_run file,
+CoM   where parameter values are shown (and shortly commented).
+CoM   pdbmat.dat_run can be modified and used as a pdbmat.dat file, 
+CoM   for further runs. 
+CoM
+CoM   So, to begin with, the simplest is to compile and run pdbmat...
+CoM   and have a look at the pdbmat.dat_run file so produced.
+CoM   If you want to get there the syntax of other available commands,
+CoM   just raise the PRINting level.
+CoM
+CoM  -Among the parameters: 
+CoM
+CoM  *The name of a file with the coordinates of the system, 
+CoM   in FREE or PDB (protein data bank) format.
+CoM
+CoM   Free format: x, y, z, mass.
+CoM   PDB  format: Lignes with ATOM or HETATm keywords are considered.
+CoM        Masses can be given in the Bfactors column.
+CoM   Note that masses can be read, but they are not required.
+CoM   In the later case, they are all set to 1.0 (as often done).
+CoM
+CoM  *A way to identify pairs of neighbors:
+CoM   Either a CUTOFF value (standard Tirion's model)
+CoM   Or a file with a list of pairs of neighbors.
+CoM   Ligne format of this latter file: atom-number atom-number
+CoM
+CoM   Alternatively, Hinsen's model can be used.
+CoM
+CoM   For one-atom-per-residue protein models, typical values are:
+CoM   Tirion's distance cutoff = 10-12 Angstroms.
+CoM   Hinsen's typical range   = 3 Angstroms.
+CoM   For all-atom protein models (like in most PDB cases), smaller
+CoM   values have to be used. For Tirion's model, a rule-of-thumb is 
+CoM   to take a value as small as possible, but so that the network
+CoM   is not split into smaller ones (if it is, you will obtain more
+CoM   than six zero-eigenvalues).
+CoM
+CoM   OUTPUT:
+CoM   *******
+CoM  -Default output matrix filename:
+CoM   Formatted file: pdbmat.sdijf 
+CoM   Binary    file: pdbmat.sdijb 
+CoM
+CoM   This is a matrix in format: i, j, non-zero-i-j-matrix-element
+CoM
+CoM  -Output coordinate filename (in free format; not mandatory):
+CoM   pdbmat.xyzm
+CoM
+CoM   This is a coordinate file with, for each atom: 
+CoM   x, y, z, mass, block-number
+CoM   For a pdb file, the block-number is the amino-acid residue number
+CoM  (it is of use only in programs like DIAGRTB).
+CoM
+CoM   More specialized ones:
+CoM   ----------------------
+CoM  -VMD-command filename: 
+CoM   file_produced_by_pdbmat.vmd
+CoM
+CoM   This is a command file for vizualising the elastic network
+CoM   with VMD, the Visual Molecular Dynamics program (checked for v1.8):
+CoM   vmd -e file_produced_by_pdbmat.vmd
+CoM   But if you just want to vizualise a standard ENM (defined with
+CoM   a CUTOff distance), there are more efficient (faster) ways...
+CoM
+CoM  -Molscript-command-file:
+CoM   file_produced_by_pdbmat.in
+CoM
+CoM   This is a command file for vizualising the elastic network, 
+CoM   using Molscript (checked for v2.1), i.e.:
+CoM   molscript < file_produced_by_pdbmat.in > file.postscript
+CoM   But if you just want to vizualise a standard ENM (defined with a 
+CoM   CUTOff distance) with Molscript, there are much faster ways...
+CoM
+CoM.....................................................................
+CoM   This is a fortran 77 program (Sorry), so it has predefined:
+CoM   MEMORY LIMITS:
+CoM   Increase them if needed. To (re)compile pdbmat, type:
+CoM   make pdbmat
+CoM   or:
+CoM   g77 -o pdbmat pdbmat.f
+CoM   or use your favorite fortran compiler instead (of g77).
+CoM
+CoM   To run it in the current directory, type: ./pdbmat
+CoM.....................................................................
+CoM
+CoM   ABOUT Tirion's model (Still in french, sorry; maybe one day...):
+CoM   ****************************************************************
+CoM   Principe du modele (Tirion, 1996): 
+CoM   
+CoM   Tous les atomes a moins de "cutoff" les uns des autres 
+CoM   sont supposes lies par des ressorts, qui ont tous
+CoM   la meme raideur.
+CoM   Simplification supplementaire par rapport au modele initial: 
+CoM   les atomes sont supposes avoir tous la meme taille
+CoM  (le cutoff est le meme pour toutes les paires d'atomes).
+CoM   On peut de plus poser qu'ils ont tous la meme masse.
+CoM   Sinon, celles-ci sont lues dans la colonne des 
+CoM   facteurs B du fichier pdb.
+CoM
+CoM   Principaux resultats:
+CoM
+CoM   Les modes de vibration de basse frequence obtenus
+CoM   a partir d'un tel modele sont tres voisins de ceux
+CoM   obtenus avec un modele beaucoup plus detaille, tels
+CoM   ceux utilises lors des etudes de Dynamique Moleculaire.
+CoM
+CoM   Dans le cas ou le mouvement fonctionnel d'une proteine est un 
+CoM   mouvement d'ensemble (collectif), on constate qu'il peut tres 
+CoM   souvent etre decrit comme une combinaison lineaire de quelques
+CoM   uns de ces modes (de un a trois).
+CoM
+CoM   Principaux avantages:
+CoM
+CoM   Pas besoin de prendre en compte tous les atomes.
+CoM   Pas besoin de minimisation d'energie prealablement
+CoM   au calcul des modes de vibration (E=0 par construction).
+CoM
+CoM.....................................................................
+CoM
+CoM   MAIN REFERENCES:
+CoM   ****************
+CoM   1) M.M. Tirion (1996):
+CoM  "Large amplitude elastic motions in proteins from
+CoM   a single-parameter, atomic analysis",
+CoM   Phys. Rev. letters vol.77(9), p1905-1908.
+CoM
+CoM   2) K. Hinsen (1998):
+CoM  "Analysis of domain motions by approximate normal mode calculations"
+CoM   Proteins vol.33, p417-429.
+CoM
+CoM   3) F. Tama, Y.H. Sanejouand (2001):
+CoM  "Conformational change of proteins arising 
+CoM   from normal modes calculations"
+CoM   Protein Engineering vol.14, p1-6.
+CoM
+CoM   4) A.R. Atilgan, S.R. Durell, R.L. Jernigan, M.C. Demirel,
+CoM   O. Keskin, I. Bahar (2001):
+CoM  "Anisotropy of Fluctuation Dynamics of Proteins with an Elastic 
+CoM   Network Model"
+CoM   Biophys. J. vol.80, p.505-515.
+CoM
+CoM   5) S. Nicolay, Y.H. Sanejouand (2006):
+CoM  "Functional modes of proteins are among the most robust"
+CoM   Phys. Rev. letters vol.96, p078104.
+CoM
+CoM.....................................................................
+CoM   Since previously released version (v3.73):
+CoM   New features:
+CoM  *Anisotropic on-site harmonic potential.
+CoM  *Statistics for the number of neighbors.
+CoM  *Crude H-bond energy term. 
+CoM  *Molscript input is now usable as is.
+CoM   Bug fixes:
+CoM  *x-y-z input coordinate format should now work.
+CoM  *C-character in column 1 (some compilers do mind)
+CoM
+CoM   In case of problem, feel free to contact: 
+CoM   Yves-Henri.Sanejouand@univ-nantes.fr
+CoM  (bug reports may help you, but also others)
+CoM.....................................................................
+CoM   Specific details:
+CoM   -----------------
+CoM   Fixed parameters for H-bonding:
+CoM   Approximate distance between C and N involved in H-bonds: 3 Angs.
+CoM   Approximate distance between bonded C and O atoms: 1.2 Angs.
+CoM   Hydrogen bond detection: through distance-cutoff criteria.
+CoM   Requires all-atom models, but not the hydrogens. 
+CoM   Covalent bond detection: also through a distance criterium.
+CoM      Even when the CONsecutif keyword is used.
+CoM   Bond-ANGLes are allowed only if there are BONDs.
+CoM   Bond-DIHEdrals are allowed only if there are BONDs and ANGLes.
+CoM
+CoM   Neighbor list:
+CoM   --------------
+CoM   Allowed file format:
+CoM   atom-number atom-number 
+CoM   atom-number atom-number force-constant
+CoM   For on-site potentials:
+CoM   atom-number x-force-constant y-force-constant z-force-constant
+CoM
+CoM   Coordinates and masses used can be saved, in FREE format.
+CoM   This depends upon the PRINTing level (must be > 0).             
+CoM
+CoM         Hinsen's version: force constant * exp(-(dist/rkh)**2.d0),
+CoM         except for topological bond force constants, e.g. ANGLes.
+CoM
+CoM      Level-shift and on-site potentials are mutually exclusive (why not ?).
+CoM      The SHIFt is added as a noise (with a maximum value).
+CoM      Purpose: to lift the degeneracy of zero-eigenvalue modes.

@@ -1,0 +1,42 @@
+ Pdbmat> Computes the Hessian matrix, using an Elastic Network Model.
+ Pdbmat> Version 3.89, November 2011.   
+
+ Pdbmat> Options to be read in pdbmat.dat file.
+
+ Pdbmat> Coordinate filename     = 4akea.pdbca
+
+ Pdbmat> Distance cutoff         =      10.00
+         Force constant          =       1.00
+         Mass values             =       CONS
+ Pdbmat> Matrix filename         = 4akea.sdijf
+
+ Openam> File on opening on unit 12: 4akea.pdbca
+
+ Pdbmat> Coordinate file in PDB format.
+
+ Rdatompdb> Number of residues found =    214
+            First residue number     =      1
+            Last  residue number     =    214
+            Number of atoms found    =    214
+
+ Pdbmat> Study of a standard ENM model.
+
+ Pdbmat> Coordinate statistics: 
+ <x>=    -2.655266 +/-     7.790475 From:   -17.629000 To:    14.107000
+ <y>=    -8.342481 +/-    12.768766 From:   -31.962000 To:    20.738000
+ <z>=   -13.071822 +/-    12.442949 From:   -35.707000 To:    13.305000
+ Pdbmat> Masses are all set to      1.00
+
+ Openam> File on opening on unit 13: 4akea.sdijf
+
+ Pdbmat> The matrix is   7.8996 % Filled.
+ Pdbmat>       16305 non-zero elements.
+
+ Pdbmat> Matrix trace   =  3338.00    
+
+ Pdbmat> Hessian matrix ready.
+ Pdbmat> To diagonalize it (and get the modes), you may use diagstd, diagrtb, blzpack...
+
+ Pdbmat> At least 6 zero-eigenvalues expected.
+
+ Pdbmat> Normal end.

@@ -1,0 +1,50 @@
+ Diagstd> Version 1.13, October 2011.    
+ Getnam> Matrix filename ? (formatted)
+ Getnam> 4akea.sdijf
+
+ Openam> file on opening on unit     10:
+ 4akea.sdijf                                                                                                                     
+ Getrep> Eigenvectors rank: lowest eigenvalues first ? (Y/N)
+ Getrep>  T
+ Getnum> Number of eigenvectors saved ? (<0: all)
+ Getnum>  36
+ Diagstd> Matrix to be read from file: 4akea.sdijf          
+
+ Diagstd> Matrix to be read is in CERFACS Format.
+ Diagstd> It has      0 title ligne(s).
+
+ Diagstd> Matrix dimension  (Nord)  =      642
+ Diagstd> Number of non-zero elements    16305
+ Diagstd> Nb of elements found twice:        0
+ Diagstd> Nb of elements    > 1E+10 :        0
+ Diagstd> Matrix trace:                   3338.0000000
+
+ Diagstd> Diagonalization.
+ Diagstd>   642 eigenvectors are about to be computed. 
+
+ Diagstd> Sum of eigenvalues (trace of eigen-matrix) =         3338.0000000
+
+ Diagstd> Eigenvalues: 
+      0.0000000      0.0000000      0.0000000      0.0000000      0.0000000
+      0.0000000      0.0027668      0.0061410      0.0142405      0.0274685
+      0.0341406      0.0541599      0.0711635      0.0986596      0.1245231
+      0.1643406      0.1736801      0.1878022      0.2064759      0.2127089
+      0.2375890      0.2563269      0.2678928      0.3017730      0.3359752
+      0.3372044      0.3543840      0.3595565      0.3837172      0.3909721
+      0.4151695      0.4299791      0.4529409      0.4678476      0.4947888
+      0.5154301
+
+ Diagstd> Frequencies (cm-1, if the matrix is a hessien in CHARMM units):
+      0.0007253      0.0007339      0.0007465      0.0007566      0.0007631
+      0.0007981      5.7119414      8.5097413     12.9585984     17.9975127
+     20.0646120     25.2716953     28.9683530     34.1086857     38.3195375
+     44.0217958     45.2553933     47.0593204     49.3435007     50.0827471
+     52.9308017     54.9784376     56.2051151     59.6534412     62.9432129
+     63.0582462     64.6446129     65.1146688     67.2668255     67.8997465
+     69.9693783     71.2063911     73.0829430     74.2758261     76.3844970
+     77.9615006
+
+ Openam> file on opening on unit     11:
+ 4akea.eigenfacs                                                                                                                 
+
+ Diagstd> Normal end.

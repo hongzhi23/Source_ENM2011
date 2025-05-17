@@ -1,0 +1,7 @@
+! This file can be modified and used as a command file (named pdbmat.dat) for pdbmat.
+ Coordinate FILENAME        = 4akea.pdbca
+ MATRIx FILENAME            = 4akea.sdijf
+ INTERACtion DISTance CUTOF =     10.000 ! For defining the list of interacting atoms.
+ INTERACtion FORCE CONStant =      1.000 ! For specifying frequency units.
+ MASS values                =       CONS ! CONstant, a value, or from COOrdinate file.
+ Output PRINTing level      =          0 ! =1: more detailled. =2: debug level.

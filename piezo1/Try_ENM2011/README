@@ -1,0 +1,5 @@
+Run pdbmat and then diagstd and check that your results are (almost) the same as mines.
+
+If you have a 32bits machine (to know that: getconf LONG_BIT), one of the
+provided executables may work as is. Otherwise, you have to recompile them;
+see the pdbmat.README and diagstd.README (worth looking there anyway).  

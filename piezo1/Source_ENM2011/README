@@ -1,0 +1,5 @@
+pdbmat: Computes the Hessian for a structure, using an Elastic Network Model (ENM).
+
+diagstd: Can diagonalize the Hessian produced by pdbmat. 
+Each eigenvector obtained gives the amplitude of the motion for each particle (atom), for a given normal mode,
+that is, a given frequency (the corresponding eigenvalue gives the square of the pulsation of the normal mode).  
